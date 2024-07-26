@@ -1,0 +1,27 @@
+.img {
+  height: 300px;
+}
+
+h1 {
+  @apply text-7xl;
+}
+
+h2 {
+  @apply text-3xl;
+}
+
+.submit-btn {
+  @apply bg-green-500 hover:bg-green-600 p-3 m-2 rounded text-white;
+}
+
+.form__create {
+  @apply flex flex-col items-center;
+}
+
+.vert {
+  @apply flex flex-col items-center;
+}
+
+.input__text {
+  @apply bg-slate-300 focus:border-sky-500;
+}

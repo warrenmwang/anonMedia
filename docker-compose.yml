@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+  command: >
+    sh -c "./goose_migrate.sh" && ./main
+
+  frontend:
+    build: ./frontend
+    command: >
+      serve -s build -l 3000
+
+  psql:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "${DB_PORT}:5432"
+    volumes:
+      - psql_volume:/var/lib/postgresql/data
+
+volumes:
+  psql_volume:
