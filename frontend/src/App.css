@@ -10,6 +10,14 @@ h2 {
   @apply text-3xl;
 }
 
+h3 {
+  @apply text-2xl;
+}
+
+label {
+  @apply text-xl font-mono;
+}
+
 .submit-btn {
   @apply bg-green-500 hover:bg-green-600 p-3 m-2 rounded text-white;
 }
@@ -22,6 +30,38 @@ h2 {
   @apply flex flex-col items-center;
 }
 
+.container__posts {
+  @apply flex flex-wrap gap-3 justify-center;
+}
+
 .input__text {
-  @apply bg-slate-300 focus:border-sky-500;
+  @apply text-xl rounded border-2 border-gray-700;
+}
+
+.card {
+  flex: 0 0 auto;
+  min-width: 300px;
+  min-height: 200px;
+}
+
+.card__outer {
+  @apply block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700;
+}
+
+.card__title {
+  @apply mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white;
+}
+
+.card__body {
+  @apply font-normal text-gray-700 dark:text-gray-400;
+}
+
+.empty {
+  @apply p-4;
+}
+
+@media only screen and (max-width: 1000px) {
+  textarea {
+    width: 80%;
+  }
 }
