@@ -3,6 +3,7 @@ import "./App.css";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useQueryClient } from "@tanstack/react-query";
+import { APIHOST } from "./config";
 
 export type Post = {
   authorId: string;
@@ -13,12 +14,12 @@ export type Post = {
 const createNewPost = (post: Post): Promise<any> => {
   const formData: FormData = new FormData();
   formData.append("post", JSON.stringify(post));
-  return axios
-    .put("http://localhost:3001/posts", formData)
-    .then((res) => res.data);
+  return axios.put(`${APIHOST}/posts`, formData).then((res) => res.data);
 };
 
 const CreateReviewForm: React.FC<{ authorId: string }> = ({ authorId }) => {
+  console.log(APIHOST);
+
   const emptyPost: Post = {
     authorId: "",
     title: "",

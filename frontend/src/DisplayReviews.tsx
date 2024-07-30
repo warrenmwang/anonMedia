@@ -4,19 +4,20 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Card from "./Card";
 import { Post } from "./CreateReviewForm";
+import { APIHOST } from "./config";
 
 const DisplayReviews: React.FC<{ authorId: string }> = ({ authorId }) => {
   const [posts, setPosts] = React.useState<Post[]>([]);
 
   const query = useQuery({
     queryKey: ["posts"],
-    queryFn: () =>
-      axios.get("http://localhost:3001/posts").then((res) => res.data),
+    queryFn: () => axios.get(`${APIHOST}/posts`).then((res) => res.data),
   });
 
   React.useEffect(() => {
     if (query.status === "success") {
-      setPosts(query.data as Post[]);
+      const data: Post[] | null = query.data;
+      if (data !== null) setPosts(data as Post[]);
     }
   }, [query]); // listen to changes in query (like if refetching caused by invalidation from create form)
 

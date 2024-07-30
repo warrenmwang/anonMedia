@@ -1,16 +1,4 @@
-version: '3.8'
-
 services:
-  backend:
-    build: ./backend
-  command: >
-    sh -c "./goose_migrate.sh" && ./main
-
-  frontend:
-    build: ./frontend
-    command: >
-      serve -s build -l 3000
-
   psql:
     image: postgres:latest
     environment:
@@ -21,6 +9,35 @@ services:
       - "${DB_PORT}:5432"
     volumes:
       - psql_volume:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    depends_on:
+      - psql
+    ports:
+      - "${PORT}:${PORT}"
+    environment:
+      PORT: ${PORT}
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN}
+      DB_HOST: psql
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+    command: >
+      sh -c "./goose_migrate.sh && ./main"
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        REACT_APP_API_HOST: ${REACT_APP_API_HOST}
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+    command: >
+      serve -s build -l 3000
 
 volumes:
   psql_volume:
