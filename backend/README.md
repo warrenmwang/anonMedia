@@ -1,3 +1,6 @@
+Shoutout to [Melkeydev](https://github.com/Melkeydev) for the go-blueprint that lays out a nice Golang project -> [link](https://github.com/Melkeydev/go-blueprint).
+
+---
 # Project backend
 
 One Paragraph of project description goes here

@@ -46,3 +46,7 @@ Frontend is served on `localhost:3000`.
 Docker containers have their main process's internal port mapped out to a corresponding host os network port.
 I didn't choose to use any custom Docker virtual networks like a simple `bridge` network because it was just easier to
 have the containers just bind to the host os network stack's ports.
+
+--- 
+
+CRUD apps...even little ones like this is literally all just boilerplate! there is no soul, only jokes.
